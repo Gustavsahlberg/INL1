@@ -28,7 +28,7 @@ def finns_konto(konto):
                 return True
         return False
 
-def Ny_transaktion():
+def Ny_transaktion(konto):
     print("hej")       
         
 def ny_konto():
@@ -42,25 +42,38 @@ def ny_konto():
             file.write(f"\nsaldo0")
             file.write(f"\n<<<<<<")
         print("Ditt konto har nu skapats ")
-    
-def administrera_konto():
-    print("----KONTOMENY----")
-    print("1. Ta ut pengar")
-    print("2. Sätt in pengar")
-    print("3. Visa saldo")
-    print("4. Avsluta")
-
-
 def skriv_ut_konto(konto):
     print(f"{konto}")
     print(f" Saldo:{konto["saldo"]}")
     print("Transaktioner:")
     for transaktioner in konto["transaktioner"]:
-        print(f"{transaktioner}")
+        print(f"{transaktioner}") 
+
+
+   
+def administrera_konto(kontonummer):
+    while True:
+        print("----KONTOMENY----")
+        print("1. Ta ut pengar")
+        print("2. Sätt in pengar")
+        print("3. Visa saldo")
+        print("4. Avsluta")
+        user_input = input(": ")
+        if user_input == "1":
+            pass
+        elif user_input == "2":
+            pass
+        elif user_input == "3":
+            pass
+        elif user_input == "4":
+            break
+        else:
+            print("Ogiltigt svar")
+
                 
 def main():
     konto_arkiv = öppna_konto_fil()
-    skriv_ut_konto(konto_arkiv["konto0000"])
+    #skriv_ut_konto(konto_arkiv["konto0000"])
     while True:
         print("----Huvudmeny----")
         print("1. Skapa Konto")
@@ -70,7 +83,12 @@ def main():
         if user_input == "1":
             ny_konto()
         elif user_input == "2":
-            pass
+            user_konto = input("Ange kontonummer: ")
+            kontonummer = "konto" + user_konto
+            if finns_konto(kontonummer):
+                administrera_konto(kontonummer)
+            else:
+                print("kontot finns inte")
         elif user_input == "3":
             break
         else:
