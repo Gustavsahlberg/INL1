@@ -18,14 +18,38 @@ def öppna_konto_fil():
                 konton[ett_konto]["transaktioner"].append(line)
     return konton
 
+
+    
+
+def finns_konto(konto):
+    with open("kontonummer.txt", "r") as file:
+        for line in file:
+            if line.startswith(konto):
+                return True
+        return False
+
+def Ny_transaktion():
+    print("hej")       
+        
 def ny_konto():
     nytt_konto = input("Skriv in ett kontonummer XXXX: ")
-
-def finns_konto():
-    print("Hej")
-
+    kontonummer = "konto" + nytt_konto
+    if finns_konto(kontonummer):
+        print("Detta konto finns redan, försök igen")
+    else:
+        with open("kontonummer.txt", "a") as file:
+            file.write(f"\n{kontonummer}")
+            file.write(f"\nsaldo0")
+            file.write(f"\n<<<<<<")
+        print("Ditt konto har nu skapats ")
+    
 def administrera_konto():
-    print("hej")
+    print("----KONTOMENY----")
+    print("1. Ta ut pengar")
+    print("2. Sätt in pengar")
+    print("3. Visa saldo")
+    print("4. Avsluta")
+
 
 def skriv_ut_konto(konto):
     print(f"{konto}")
@@ -44,7 +68,7 @@ def main():
         print("3. Avsluta")
         user_input = input(": ")
         if user_input == "1":
-            pass
+            ny_konto()
         elif user_input == "2":
             pass
         elif user_input == "3":
