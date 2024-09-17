@@ -124,3 +124,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+####Att Göra
+#txt fil ska läsas up vid programstart
+#transaktioner ska sparas i fil när man avslutar
+#Fixa felmedelanden när man skriver in fel saker 
