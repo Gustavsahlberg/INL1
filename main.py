@@ -1,4 +1,4 @@
-import time
+from time import gmtime, strftime
 
 def öppna_konto_fil():
     konton = {}
@@ -28,8 +28,25 @@ def finns_konto(konto):
                 return True
         return False
 
-def Ny_transaktion(konto):
-    print("hej")       
+def Ny_transaktion(konto, plus_eller_minus, summa):
+    #decimaltal?
+    if summa.isdigit():
+        summa = int(summa)
+        if summa < 0:
+            print("ogiltigt lågt nummer, försök igen")
+        else:
+            if konto["saldo"] < summa and plus_eller_minus == "-":
+                print("Du kan inte dra ut mer än vad du har på ditt konto")
+            else:
+                tid_vid_köp = strftime("(" + "%Y-%m-%d" + "(" + "%H:%M"+ "))")
+                konto["transaktioner"].extend([f"{plus_eller_minus}{summa}{tid_vid_köp}"])
+                if plus_eller_minus == "+":
+                    konto["saldo"] += summa
+                else:
+                    konto["saldo"] -= summa
+                
+    else: 
+        print("Du måste skriv in en siffra")
         
 def ny_konto():
     nytt_konto = input("Skriv in ett kontonummer XXXX: ")
@@ -62,9 +79,11 @@ def administrera_konto(konto_akriv, kontonummer):
         print("4. Avsluta")
         user_input = input(": ")
         if user_input == "1":
-            pass
+            summa = input("Hur mycket pengar vill du ta ut?")
+            Ny_transaktion(konto_akriv[kontonummer], "-", summa)
         elif user_input == "2":
-            pass
+            summa = input("Hur mycket pengar vill sätt in?")
+            Ny_transaktion(konto_akriv[kontonummer], "+", summa)
         elif user_input == "3":
             skriv_ut_konto(konto_akriv[kontonummer])
         elif user_input == "4":
