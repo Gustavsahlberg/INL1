@@ -46,7 +46,7 @@ def Ny_transaktion(konto, plus_eller_minus, summa):
                     konto["saldo"] -= summa
                 
     else: 
-        print("Du måste skriv in en siffra")
+        print("Du måste skriva ett posetivt heltal")
         
 def ny_konto():
     nytt_konto = input("Skriv in ett kontonummer XXXX: ")
@@ -62,11 +62,13 @@ def ny_konto():
 
 
 
-def skriv_ut_konto(konto):
-    print(f"Saldo:{konto["saldo"]}")
-    print("Transaktioner:")
-    for transaktioner in konto["transaktioner"]:
-        print(f"{transaktioner}") 
+def skriv_ut_konto(konto, saldo_eller_transaktion):
+    if saldo_eller_transaktion == "saldo":
+        print(f"Saldo:{konto["saldo"]}")
+    elif saldo_eller_transaktion == "transaktion":
+        print("Transaktioner:")
+        for transaktioner in konto["transaktioner"]:
+            print(f"{transaktioner}") 
 
 
    
@@ -76,7 +78,8 @@ def administrera_konto(konto_akriv, kontonummer):
         print("1. Ta ut pengar")
         print("2. Sätt in pengar")
         print("3. Visa saldo")
-        print("4. Avsluta")
+        print("4. Visa transaktioner")
+        print("5. Avsluta")
         user_input = input(": ")
         if user_input == "1":
             summa = input("Hur mycket pengar vill du ta ut?")
@@ -85,8 +88,11 @@ def administrera_konto(konto_akriv, kontonummer):
             summa = input("Hur mycket pengar vill sätt in?")
             Ny_transaktion(konto_akriv[kontonummer], "+", summa)
         elif user_input == "3":
-            skriv_ut_konto(konto_akriv[kontonummer])
+            skriv_ut_konto(konto_akriv[kontonummer], "saldo")
         elif user_input == "4":
+            skriv_ut_konto(konto_akriv[kontonummer], "transaktion")
+
+        elif user_input == "5":
             break
         else:
             print("Ogiltigt svar")
