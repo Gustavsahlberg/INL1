@@ -1,4 +1,4 @@
-from time import gmtime, strftime
+from time import strftime
 
 def öppna_konto_fil():
     konton = {}
@@ -129,4 +129,4 @@ if __name__ == "__main__":
 ####Att Göra
 #txt fil ska läsas up vid programstart
 #transaktioner ska sparas i fil när man avslutar
-#Fixa felmedelanden när man skriver in fel saker 
+#Fixa felmedelanden när man skriver in fel saker
