@@ -42,16 +42,18 @@ def ny_konto():
             file.write(f"\nsaldo0")
             file.write(f"\n<<<<<<")
         print("Ditt konto har nu skapats ")
+
+
+
 def skriv_ut_konto(konto):
-    print(f"{konto}")
-    print(f" Saldo:{konto["saldo"]}")
+    print(f"Saldo:{konto["saldo"]}")
     print("Transaktioner:")
     for transaktioner in konto["transaktioner"]:
         print(f"{transaktioner}") 
 
 
    
-def administrera_konto(kontonummer):
+def administrera_konto(konto_akriv, kontonummer):
     while True:
         print("----KONTOMENY----")
         print("1. Ta ut pengar")
@@ -64,7 +66,7 @@ def administrera_konto(kontonummer):
         elif user_input == "2":
             pass
         elif user_input == "3":
-            pass
+            skriv_ut_konto(konto_akriv[kontonummer])
         elif user_input == "4":
             break
         else:
@@ -86,7 +88,7 @@ def main():
             user_konto = input("Ange kontonummer: ")
             kontonummer = "konto" + user_konto
             if finns_konto(kontonummer):
-                administrera_konto(kontonummer)
+                administrera_konto(konto_arkiv, kontonummer)
             else:
                 print("kontot finns inte")
         elif user_input == "3":
