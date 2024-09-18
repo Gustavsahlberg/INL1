@@ -130,3 +130,8 @@ if __name__ == "__main__":
 #txt fil ska läsas up vid programstart
 #transaktioner ska sparas i fil när man avslutar
 #Fixa felmedelanden när man skriver in fel saker
+#om filen inte finns skapa filen 
+#bankonto har bara 4 siffror checker 
+
+
+#öppnar txt fil i slutet och sen skriver ner alla konton och alla des transaktioner i numerisk ordning på slutet
