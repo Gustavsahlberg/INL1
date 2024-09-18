@@ -38,7 +38,7 @@ def Ny_transaktion(konto, plus_eller_minus, summa):
             if konto["saldo"] < summa and plus_eller_minus == "-":
                 print("Du kan inte dra ut mer än vad du har på ditt konto")
             else:
-                tid_vid_köp = strftime("(" + "%Y-%m-%d" + "(" + "%H:%M"+ "))")
+                tid_vid_köp = strftime("(" + "%Y-%m-%d" + "(" + "%H:%M:%S"+ "))")
                 konto["transaktioner"].extend([f"{plus_eller_minus}{summa}{tid_vid_köp}"])
                 if plus_eller_minus == "+":
                     konto["saldo"] += summa
