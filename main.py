@@ -55,10 +55,10 @@ def ny_konto():
         print("Detta konto finns redan, försök igen")
     else:
         with open("kontonummer.txt", "a") as file:
-            file.write(f"\n{kontonummer}")
-            file.write(f"\nsaldo0")
-            file.write(f"\n<<<<<<")
-        print("Ditt konto har nu skapats ")
+            #file.write(f"\n{kontonummer}")
+            #file.write(f"\nsaldo0")
+            #file.write(f"\n<<<<<<")
+            print("Ditt konto har nu skapats ")
 
 
 
@@ -128,7 +128,11 @@ if __name__ == "__main__":
 
 ####Att Göra
 #txt fil ska läsas up vid programstart
-#transaktioner ska sparas i fil när man avslutar
+#fixa så funktionen finns konto tittar i en dict om kontot finns och inte i filen
+#fixa så att funktionen ny konto fixar en key med kontonummer som man skrivit in och sendan en dict i den med saldo och transaktioner
+
+
+
 #Fixa felmedelanden när man skriver in fel saker
 #om filen inte finns skapa filen 
 #bankonto har bara 4 siffror checker 
