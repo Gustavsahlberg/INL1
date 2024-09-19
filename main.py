@@ -21,12 +21,11 @@ def öppna_konto_fil():
 
     
 
-def finns_konto(konto):
-    with open("kontonummer.txt", "r") as file:
-        for line in file:
-            if line.startswith(konto):
-                return True
-        return False
+def finns_konto(konto, konto_arkiv):
+    if konto in konto_arkiv.keys():
+        return True
+    else:
+        False
 
 def Ny_transaktion(konto, plus_eller_minus, summa):
     #decimaltal?
@@ -48,17 +47,13 @@ def Ny_transaktion(konto, plus_eller_minus, summa):
     else: 
         print("Du måste skriva ett posetivt heltal")
         
-def ny_konto():
+def ny_konto(konto_arkiv):
     nytt_konto = input("Skriv in ett kontonummer XXXX: ")
     kontonummer = "konto" + nytt_konto
-    if finns_konto(kontonummer):
+    if finns_konto(kontonummer, konto_arkiv):
         print("Detta konto finns redan, försök igen")
     else:
-        with open("kontonummer.txt", "a") as file:
-            #file.write(f"\n{kontonummer}")
-            #file.write(f"\nsaldo0")
-            #file.write(f"\n<<<<<<")
-            print("Ditt konto har nu skapats ")
+        konto_arkiv[kontonummer] = {"saldo" : 0, "transaktioner" : []}
 
 
 
@@ -108,11 +103,11 @@ def main():
         print("3. Avsluta")
         user_input = input(": ")
         if user_input == "1":
-            ny_konto()
+            ny_konto(konto_arkiv)
         elif user_input == "2":
             user_konto = input("Ange kontonummer: ")
             kontonummer = "konto" + user_konto
-            if finns_konto(kontonummer):
+            if finns_konto(kontonummer, konto_arkiv):
                 administrera_konto(konto_arkiv, kontonummer)
             else:
                 print("kontot finns inte")
