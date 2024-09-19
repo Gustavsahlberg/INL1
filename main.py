@@ -67,6 +67,7 @@ def ny_konto(konto_arkiv):
             print("Detta konto finns redan, försök igen")
         else:
             konto_arkiv[kontonummer] = {"saldo" : 0, "transaktioner" : []}
+            print("Kontot har skapats")
 
 
 
