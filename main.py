@@ -1,21 +1,23 @@
 from time import strftime
+import os
 
 def öppna_konto_fil():
     konton = {}
-    ett_konto = None
-    with open("kontonummer.txt" ,"r") as file:
-        for line in file:
-            line = line.strip()
-            if line == "<<<<<<":
-                ett_konto = None
-            elif line.startswith("konto"):
-                ett_konto = line
-                konton[ett_konto] = {"saldo" : 0, "transaktioner" : []}
-            elif line.startswith("saldo"):
-                saldo = int(line.replace("saldo", "").strip())
-                konton[ett_konto]["saldo"] = saldo
-            elif ett_konto:
-                konton[ett_konto]["transaktioner"].append(line)
+    if os.path.exists("kontonummer.txt"):
+        ett_konto = None
+        with open("kontonummer.txt" ,"r") as file:
+            for line in file:
+                line = line.strip()
+                if line == "<<<<<<":
+                    ett_konto = None
+                elif line.startswith("konto"):
+                    ett_konto = line
+                    konton[ett_konto] = {"saldo" : 0, "transaktioner" : []}
+                elif line.startswith("saldo"):
+                    saldo = int(line.replace("saldo", "").strip())
+                    konton[ett_konto]["saldo"] = saldo
+                elif ett_konto:
+                    konton[ett_konto]["transaktioner"].append(line)
     return konton
 
 
@@ -145,8 +147,7 @@ if __name__ == "__main__":
 
 
 #Fixa felmedelanden när man skriver in fel saker
-#om filen inte finns skapa filen 
-#om ingen fil finns så skippas det och då skapa bara en tom dict som inte har några konton i sig än
+
 
 
 
