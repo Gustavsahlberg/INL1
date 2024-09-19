@@ -97,7 +97,7 @@ def administrera_konto(konto_akriv, kontonummer):
         print("3. Visa saldo")
         print("4. Visa transaktioner")
         print("5. Avsluta")
-        user_input = input(": ")
+        user_input = input("Ange Menyval: ")
         if user_input == "1":
             summa = input("Hur mycket pengar vill du ta ut?")
             Ny_transaktion(konto_akriv[kontonummer], "-", summa)
@@ -122,7 +122,7 @@ def main():
         print("1. Skapa Konto")
         print("2. Administrera konto")
         print("3. Avsluta")
-        user_input = input(": ")
+        user_input = input("Ange Menyval: ")
         if user_input == "1":
             ny_konto(konto_arkiv)
         elif user_input == "2":
@@ -143,10 +143,6 @@ if __name__ == "__main__":
     main()
 
 
-####Att Göra
-
-
-#Fixa felmedelanden när man skriver in fel saker
 
 
 
