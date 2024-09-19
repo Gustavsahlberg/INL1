@@ -60,7 +60,7 @@ def konto_kontroll(user_input):
 
 def ny_konto(konto_arkiv):
     kontonummer = konto_kontroll(input("Skriv in ett kontonummer XXXX: "))
-    if type[kontonummer] == type[str]:
+    if type(kontonummer) == type("string"):
         if finns_konto(kontonummer, konto_arkiv):
             print("Detta konto finns redan, försök igen")
         else:
@@ -115,7 +115,6 @@ def administrera_konto(konto_akriv, kontonummer):
                 
 def main():
     konto_arkiv = öppna_konto_fil()
-    #skriv_ut_konto(konto_arkiv["konto0000"])
     while True:
         print("----Huvudmeny----")
         print("1. Skapa Konto")
@@ -147,7 +146,7 @@ if __name__ == "__main__":
 
 #Fixa felmedelanden när man skriver in fel saker
 #om filen inte finns skapa filen 
-#om ingen fil fins så skippas det och då skapa bara en tom dict som inte har några konton i sig än
+#om ingen fil finns så skippas det och då skapa bara en tom dict som inte har några konton i sig än
 
 
 
