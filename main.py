@@ -1,21 +1,23 @@
 from time import strftime
+import os
 
 def öppna_konto_fil():
     konton = {}
-    ett_konto = None
-    with open("kontonummer.txt" ,"r") as file:
-        for line in file:
-            line = line.strip()
-            if line == "<<<<<<":
-                ett_konto = None
-            elif line.startswith("konto"):
-                ett_konto = line
-                konton[ett_konto] = {"saldo" : 0, "transaktioner" : []}
-            elif line.startswith("saldo"):
-                saldo = int(line.replace("saldo", "").strip())
-                konton[ett_konto]["saldo"] = saldo
-            elif ett_konto:
-                konton[ett_konto]["transaktioner"].append(line)
+    if os.path.exists("kontonummer.txt"):
+        ett_konto = None
+        with open("kontonummer.txt" ,"r") as file:
+            for line in file:
+                line = line.strip()
+                if line == "<<<<<<":
+                    ett_konto = None
+                elif line.startswith("konto"):
+                    ett_konto = line
+                    konton[ett_konto] = {"saldo" : 0, "transaktioner" : []}
+                elif line.startswith("saldo"):
+                    saldo = int(line.replace("saldo", "").strip())
+                    konton[ett_konto]["saldo"] = saldo
+                elif ett_konto:
+                    konton[ett_konto]["transaktioner"].append(line)
     return konton
 
 
@@ -95,7 +97,7 @@ def administrera_konto(konto_akriv, kontonummer):
         print("3. Visa saldo")
         print("4. Visa transaktioner")
         print("5. Avsluta")
-        user_input = input(": ")
+        user_input = input("Ange Menyval: ")
         if user_input == "1":
             summa = input("Hur mycket pengar vill du ta ut?")
             Ny_transaktion(konto_akriv[kontonummer], "-", summa)
@@ -120,7 +122,7 @@ def main():
         print("1. Skapa Konto")
         print("2. Administrera konto")
         print("3. Avsluta")
-        user_input = input(": ")
+        user_input = input("Ange Menyval: ")
         if user_input == "1":
             ny_konto(konto_arkiv)
         elif user_input == "2":
@@ -139,14 +141,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-####Att Göra
-
-
-#Fixa felmedelanden när man skriver in fel saker
-#om filen inte finns skapa filen 
-#om ingen fil finns så skippas det och då skapa bara en tom dict som inte har några konton i sig än
-
-
-
