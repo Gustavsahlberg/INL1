@@ -28,7 +28,6 @@ def finns_konto(konto, konto_arkiv):
         False
 
 def Ny_transaktion(konto, plus_eller_minus, summa):
-    #decimaltal?
     if summa.isdigit():
         summa = int(summa)
         if summa < 0:
@@ -45,15 +44,27 @@ def Ny_transaktion(konto, plus_eller_minus, summa):
                     konto["saldo"] -= summa
                 
     else: 
-        print("Du måste skriva ett posetivt heltal")
-        
-def ny_konto(konto_arkiv):
-    nytt_konto = input("Skriv in ett kontonummer XXXX: ")
-    kontonummer = "konto" + nytt_konto
-    if finns_konto(kontonummer, konto_arkiv):
-        print("Detta konto finns redan, försök igen")
+        print("Du måste skriva ett positivt heltal")
+
+
+def konto_kontroll(user_input):
+    if len(user_input) != 4:
+        print("Fel antal nummer i ditt kontonummer, försök XXXX")
+    elif user_input.isdigit() != True:
+        print("Det får bara vara heltal i ditt kontonummer")
     else:
-        konto_arkiv[kontonummer] = {"saldo" : 0, "transaktioner" : []}
+        kontonummer = "konto" + user_input
+        return kontonummer
+
+
+
+def ny_konto(konto_arkiv):
+    kontonummer = konto_kontroll(input("Skriv in ett kontonummer XXXX: "))
+    if type[kontonummer] == type[str]:
+        if finns_konto(kontonummer, konto_arkiv):
+            print("Detta konto finns redan, försök igen")
+        else:
+            konto_arkiv[kontonummer] = {"saldo" : 0, "transaktioner" : []}
 
 
 
@@ -114,14 +125,15 @@ def main():
         if user_input == "1":
             ny_konto(konto_arkiv)
         elif user_input == "2":
-            user_konto = input("Ange kontonummer: ")
-            kontonummer = "konto" + user_konto
-            if finns_konto(kontonummer, konto_arkiv):
-                administrera_konto(konto_arkiv, kontonummer)
-            else:
-                print("kontot finns inte")
+            kontonummer = konto_kontroll(input("Ange kontonummer: "))
+            if type[kontonummer] == type[str]:
+                if finns_konto(kontonummer, konto_arkiv):
+                    administrera_konto(konto_arkiv, kontonummer)
+                else:
+                    print("kontot finns inte")
         elif user_input == "3":
             avslut(konto_arkiv)
+            print(konto_arkiv)
             break
         else:
             print("Ogiltigt val!!")
@@ -136,6 +148,7 @@ if __name__ == "__main__":
 
 #Fixa felmedelanden när man skriver in fel saker
 #om filen inte finns skapa filen 
-#bankonto har bara 4 siffror checker 
+#om ingen fil fins så skippas det och då skapa bara en tom dict som inte har några konton i sig än
+
 
 
