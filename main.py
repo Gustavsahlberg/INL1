@@ -67,7 +67,6 @@ def skriv_ut_konto(konto, saldo_eller_transaktion):
 
 def avslut(konto_arkiv):
     with open("kontonummer.txt" ,"w") as file:
-        print(konto_arkiv)
         for konto in konto_arkiv.keys():
             file.write("<<<<<<\n")
             file.write(f"{konto}\n")
