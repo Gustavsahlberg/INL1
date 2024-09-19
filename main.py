@@ -133,7 +133,6 @@ def main():
                     print("kontot finns inte")
         elif user_input == "3":
             avslut(konto_arkiv)
-            print(konto_arkiv)
             break
         else:
             print("Ogiltigt val!!")
