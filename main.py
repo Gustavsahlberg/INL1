@@ -65,7 +65,17 @@ def skriv_ut_konto(konto, saldo_eller_transaktion):
         for transaktioner in konto["transaktioner"]:
             print(f"{transaktioner}") 
 
+def avslut(konto_arkiv):
+    with open("kontonummer.txt" ,"w") as file:
+        print(konto_arkiv)
+        for konto in konto_arkiv.keys():
+            file.write("<<<<<<\n")
+            file.write(f"{konto}\n")
+            file.write(f"saldo{konto_arkiv[konto]["saldo"]}\n")
+            for transaktion in konto_arkiv[konto]["transaktioner"]:
+                file.write(f"{transaktion}\n")
 
+        
    
 def administrera_konto(konto_akriv, kontonummer):
     while True:
@@ -112,6 +122,7 @@ def main():
             else:
                 print("kontot finns inte")
         elif user_input == "3":
+            avslut(konto_arkiv)
             break
         else:
             print("Ogiltigt val!!")
@@ -122,10 +133,6 @@ if __name__ == "__main__":
 
 
 ####Att Göra
-#txt fil ska läsas up vid programstart
-#fixa så funktionen finns konto tittar i en dict om kontot finns och inte i filen
-#fixa så att funktionen ny konto fixar en key med kontonummer som man skrivit in och sendan en dict i den med saldo och transaktioner
-
 
 
 #Fixa felmedelanden när man skriver in fel saker
@@ -133,4 +140,3 @@ if __name__ == "__main__":
 #bankonto har bara 4 siffror checker 
 
 
-#öppnar txt fil i slutet och sen skriver ner alla konton och alla des transaktioner i numerisk ordning på slutet
