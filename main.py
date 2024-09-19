@@ -126,7 +126,7 @@ def main():
             ny_konto(konto_arkiv)
         elif user_input == "2":
             kontonummer = konto_kontroll(input("Ange kontonummer: "))
-            if type[kontonummer] == type[str]:
+            if type(kontonummer) == type("string"):
                 if finns_konto(kontonummer, konto_arkiv):
                     administrera_konto(konto_arkiv, kontonummer)
                 else:
